@@ -21,8 +21,8 @@ jobs:
         cache: maven
     - name: Setup the root cert
       run: |
-      echo ${{secrets.TEST}} > test.txt;
-      cat test.txt 
+        echo ${{secrets.TEST}} > test.txt;
+        cat test.txt 
     - name: Build with Maven
       run: mvn test
 
