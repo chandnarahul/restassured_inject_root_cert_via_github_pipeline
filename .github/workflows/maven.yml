@@ -20,11 +20,9 @@ jobs:
         distribution: 'corretto'
         cache: maven
     - name: Setup the root cert
-      env:
-        SSH_KEY: ${{secrets.TEST}}
       run: |
-        echo $SSH_KEY > dummy.txt;
-        cat dummy.txt 
+        echo ${{secrets.BAD_SSL_ROOT_CERT}} > badssl_root.pem;
+        keytool -import -alias badssl_root -file badssl_root.pem -cacerts 
     - name: Build with Maven
       run: mvn test
 
