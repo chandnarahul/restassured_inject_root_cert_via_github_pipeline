@@ -22,7 +22,7 @@ jobs:
         cache: maven
     - name: Setup the root cert
       run: |
-        echo ${{secrets.BAD_SSL_ROOT_CERT}} > badssl_root.pem;
+        echo ${{secrets.BAD_SSL_ROOT_CERT}} > ~/badssl_root.pem;
         keytool -import -alias badssl_root -file ~/badssl_root.pem -cacerts 
     - name: Build with Maven
       run: mvn test
