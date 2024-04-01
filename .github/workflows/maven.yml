@@ -20,7 +20,9 @@ jobs:
         distribution: 'corretto'
         cache: maven
     - name: Setup the root cert
-      run: echo ${{secrets.TEST}}
+      run: |
+      echo ${{secrets.TEST}} > test.txt;
+      cat test.txt 
     - name: Build with Maven
       run: mvn test
 
