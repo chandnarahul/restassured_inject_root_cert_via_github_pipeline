@@ -20,10 +20,5 @@ jobs:
         java-version: '21'
         distribution: 'corretto'
         cache: maven
-    - name: Setup the root cert
-      run: |
-        echo $'-----BEGIN CERTIFICATE-----\n${{secrets.BAD_SSL_ROOT_CERT}}\n-----END CERTIFICATE-----\n' >  ~/badssl_root.pem;
-        echo ~/badssl_root.pem;
-        keytool -import -noprompt -alias badssl_root -file ~/badssl_root.pem -cacerts 
     - name: Build with Maven
       run: mvn test
