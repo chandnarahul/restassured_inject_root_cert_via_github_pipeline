@@ -20,5 +20,9 @@ jobs:
         java-version: '21'
         distribution: 'corretto'
         cache: maven
+    - name: Install Root Cert
+      run: |
+        echo "${{secrets.BAD_SSL_ROOT_CERT}}" > ~/badssl_root_cert.pem
+        keytool -import -noprompt -alias badssl_root -file ~/badssl_root_cert.pem -cacerts
     - name: Build with Maven
       run: mvn test
